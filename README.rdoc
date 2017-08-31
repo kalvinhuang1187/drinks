@@ -1,0 +1,7 @@
+Display a form with a single input, where the user can type a Twitter user’s handle
+
+When the user submits the form, do an AJAX call that submits the form to the backend.  The backend will need to do an API call to the Twitter API to get the user’s last 10 tweets, using the /user_timeline endpoint, documented here: https://dev.twitter.com/rest/reference/get/statuses/user_timeline
+
+When the API call is returned, save the Twitter user into a table called “users”, and save each of the tweets in a table called “tweets”, but don’t save the same tweet twice.  For example, if I submit this form twice, it should still only save the last 10 tweets once.  It’s up to you to determine which fields of both the user and tweets you want to save.  Make sure that a User model and Tweet model are created and the appropriate association is made between the two.
+
+Output the result of the last 10 tweets to the HTML dom without refreshing the screen.

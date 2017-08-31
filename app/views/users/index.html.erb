@@ -1,0 +1,31 @@
+
+<form>
+  <input id="user-handle" type="text"></input>
+  <button id="submit-button">Submit</button>
+</form>
+
+<div id="tweets"></div>
+
+<script>
+  $(function() {
+    $('#submit-button').click(function(event) {
+      event.preventDefault();
+      var user_handle = $('#user-handle').val();
+      $.ajax({
+        url: '/tweets/get_tweet.json?user_handle=' + user_handle
+      }).done(function(data) {
+        var tweets = $('#tweets');
+        if (data.error == null) {
+          var response = data.response;
+          var content = $('<ul>')
+          for (var i = 0; i < response.length; i++) {
+            content.append('<li>' + response[i].content + '</li>');
+          }
+          tweets.html(content);
+        } else {
+          tweets.html(data.error);
+        }
+      });
+    });
+  });
+</script>
